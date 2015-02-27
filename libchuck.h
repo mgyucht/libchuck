@@ -17,16 +17,16 @@
 #endif // __cplusplus
 
 
-struct chuck_inst;
+typedef struct chuck_inst chuck_inst;
 
-struct chuck_options
+typedef struct chuck_options
 {
     int num_channels;
     int sample_rate;
     int buffer_size;
-};
+} chuck_options;
 
-struct chuck_result
+typedef struct chuck_result
 {
     enum {
         OK,
@@ -37,7 +37,7 @@ struct chuck_result
     } type;
     
     int shred_id; // only valid if OK
-};
+} chuck_result;
 
 LIBCHUCK_FUNC_DECL chuck_inst *libchuck_create(chuck_options *options);
 LIBCHUCK_FUNC_DECL void libchuck_destroy(chuck_inst *);

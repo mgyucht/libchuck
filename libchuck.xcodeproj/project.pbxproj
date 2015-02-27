@@ -71,6 +71,10 @@
 		0948AA191A9C73380066CCBD /* util_xforms.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9C21A9C73380066CCBD /* util_xforms.c */; };
 		0948AA201A9C76380066CCBD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0948AA1F1A9C76380066CCBD /* CoreAudio.framework */; };
 		0948AA221A9C76410066CCBD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0948AA211A9C76410066CCBD /* AudioToolbox.framework */; };
+		09A13EB51AA08583007DB8D2 /* digiio_rtaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948AA1D1A9C73A70066CCBD /* digiio_rtaudio.cpp */; };
+		09A13EB71AA085BA007DB8D2 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EB61AA085BA007DB8D2 /* libc++.dylib */; };
+		09A13EB91AA0860A007DB8D2 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EB81AA0860A007DB8D2 /* AudioUnit.framework */; };
+		09A13EC31AA08777007DB8D2 /* chuck.lex in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6461A9C73360066CCBD /* chuck.lex */; };
 		09DDF9821A9C6BB200F72155 /* libchuck.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 09DDF9811A9C6BB200F72155 /* libchuck.h */; };
 		09DDF9841A9C6BB200F72155 /* libchuck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09DDF9831A9C6BB200F72155 /* libchuck.cpp */; };
 /* End PBXBuildFile section */
@@ -89,7 +93,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0948A6461A9C73360066CCBD /* chuck.lex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chuck.lex; sourceTree = "<group>"; };
+		0948A6461A9C73360066CCBD /* chuck.lex */ = {isa = PBXFileReference; explicitFileType = sourcecode.lex; fileEncoding = 4; path = chuck.lex; sourceTree = "<group>"; };
 		0948A64A1A9C73360066CCBD /* chuck.y */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.yacc; path = chuck.y; sourceTree = "<group>"; };
 		0948A64B1A9C73360066CCBD /* chuck_absyn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chuck_absyn.cpp; sourceTree = "<group>"; };
 		0948A64C1A9C73360066CCBD /* chuck_absyn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chuck_absyn.h; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 		0948AA1E1A9C73A70066CCBD /* digiio_rtaudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = digiio_rtaudio.h; sourceTree = "<group>"; };
 		0948AA1F1A9C76380066CCBD /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		0948AA211A9C76410066CCBD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		09A13EB61AA085BA007DB8D2 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		09A13EB81AA0860A007DB8D2 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		09DDF97E1A9C6BB200F72155 /* libchuck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libchuck.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		09DDF9811A9C6BB200F72155 /* libchuck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libchuck.h; sourceTree = "<group>"; };
 		09DDF9831A9C6BB200F72155 /* libchuck.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = libchuck.cpp; sourceTree = "<group>"; };
@@ -260,6 +266,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09A13EB91AA0860A007DB8D2 /* AudioUnit.framework in Frameworks */,
+				09A13EB71AA085BA007DB8D2 /* libc++.dylib in Frameworks */,
 				0948AA221A9C76410066CCBD /* AudioToolbox.framework in Frameworks */,
 				0948AA201A9C76380066CCBD /* CoreAudio.framework in Frameworks */,
 			);
@@ -477,6 +485,8 @@
 		0948AA231A9C765B0066CCBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09A13EB81AA0860A007DB8D2 /* AudioUnit.framework */,
+				09A13EB61AA085BA007DB8D2 /* libc++.dylib */,
 				0948AA211A9C76410066CCBD /* AudioToolbox.framework */,
 				0948AA1F1A9C76380066CCBD /* CoreAudio.framework */,
 			);
@@ -566,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09A13EC31AA08777007DB8D2 /* chuck.lex in Sources */,
 				0948AA161A9C73380066CCBD /* util_sndfile.c in Sources */,
 				0948A9F21A9C73380066CCBD /* mo_audio.mm in Sources */,
 				0948AA0A1A9C73380066CCBD /* ulib_math.cpp in Sources */,
@@ -581,6 +592,7 @@
 				0948A9DD1A9C73380066CCBD /* chuck_symbol.cpp in Sources */,
 				0948A9CE1A9C73380066CCBD /* chuck_dl.cpp in Sources */,
 				0948A9ED1A9C73380066CCBD /* server.c in Sources */,
+				09A13EB51AA08583007DB8D2 /* digiio_rtaudio.cpp in Sources */,
 				0948AA071A9C73380066CCBD /* ugen_stk.cpp in Sources */,
 				0948A9D91A9C73380066CCBD /* chuck_parse.cpp in Sources */,
 				0948AA0D1A9C73380066CCBD /* ulib_std.cpp in Sources */,
@@ -741,6 +753,7 @@
 				PRODUCT_MODULE_NAME = chuck;
 				PRODUCT_NAME = chuck;
 				SKIP_INSTALL = YES;
+				YACC_GENERATED_FILE_STEM = InputFileStem;
 			};
 			name = Debug;
 		};
@@ -772,6 +785,7 @@
 				PRODUCT_MODULE_NAME = chuck;
 				PRODUCT_NAME = chuck;
 				SKIP_INSTALL = YES;
+				YACC_GENERATED_FILE_STEM = InputFileStem;
 			};
 			name = Release;
 		};

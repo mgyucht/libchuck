@@ -99,6 +99,8 @@ LIBCHUCK_FUNC_DECL chuck_inst *libchuck_create(chuck_options *options)
     
     if(ck == NULL) return NULL;
     
+    ck->m_vm = NULL;
+    ck->m_compiler = NULL;
     ck->m_options = *options;
     
     return ck;
