@@ -7,10 +7,47 @@
 //
 
 #include "libchuck.h"
+
 #include "chuck_vm.h"
 #include "chuck_compile.h"
 #include "chuck_globals.h"
 #include "util_thread.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+
+bool path_charIsSeparator(char c)
+{
+    return c == '/';
+}
+
+const char *path_getLastComponent(const char *path)
+{
+    const char *secondToLast = path;
+    const char *last = path;
+    
+    for(int i = 0; path[i] != '\0'; i++)
+    {
+        if(path_charIsSeparator(path[i]))
+        {
+            last = path+i;
+            secondToLast = last;
+        }
+    }
+    
+    if(last[1] == '\0') return secondToLast+1;
+    else return last+1;
+}
+
+chuck_result result_ok(int shred_id) { chuck_result result; result.type = chuck_result::OK; result.shred_id = shred_id; return result; }
+chuck_result err_file() { chuck_result result; result.type = chuck_result::ERR_FILE; return result; }
+chuck_result err_compile() { chuck_result result; result.type = chuck_result::ERR_COMPILE; return result; }
+
 
 struct chuck_inst
 {
@@ -18,6 +55,7 @@ struct chuck_inst
     
     Chuck_VM *m_vm;
     Chuck_Compiler *m_compiler;
+    string m_last_err;
     XThread m_vm_thread;
 };
 
@@ -203,23 +241,104 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
     return TRUE;
 }
 
-LIBCHUCK_FUNC_DECL int libchuck_vm_stop(chuck_inst *)
+LIBCHUCK_FUNC_DECL int libchuck_vm_stop(chuck_inst *ck)
 {
-    return 0;
+    if( ck->m_vm )
+    {
+        EM_log( CK_LOG_SYSTEM, "stopping chuck virtual machine..." );
+        // get vm
+        Chuck_VM * the_vm = ck->m_vm;
+        // flag the global one
+        ck->m_vm = g_vm = NULL;
+        // if not NULL
+        if( the_vm )
+        {
+            // stop
+            the_vm->stop();
+            
+            ck->m_vm_thread.wait();
+            
+            // wait a bit
+//            usleep( 100000 );
+            
+            // detach
+            // all_detach();
+            
+            SAFE_DELETE( the_vm );
+        }
+        
+        SAFE_DELETE( ck->m_compiler );
+        g_compiler = ck->m_compiler = NULL;
+    }
+    
+    return TRUE;
 }
 
-LIBCHUCK_FUNC_DECL int libchuck_add_shred(chuck_inst *, const char *code)
+LIBCHUCK_FUNC_DECL chuck_result libchuck_add_shred(chuck_inst *ck, const char *filepath, const char *code)
 {
-    return 0;
+    const char *name = path_getLastComponent(filepath);
+    FILE *file = NULL;
+    
+    if(code == NULL)
+    {
+        file = fopen(filepath, "r");
+        if(file == NULL)
+            return err_file();
+    }
+    
+    chuck_result result;
+    
+    if(ck->m_compiler->go(name, file, code, filepath))
+    {
+        // allocate the VM message struct
+        Chuck_Msg * msg = new Chuck_Msg;
+        unsigned int shred_id = 0;
+        
+        // fill in the VM message
+        msg->code = ck->m_compiler->output();
+        
+        msg->code->name = name;
+        msg->type = MSG_ADD;
+        msg->reply = ( ck_msg_func )1;
+        msg->args = new vector<string>();
+        
+        // execute
+        ck->m_vm->queue_msg( msg, 1 );
+        
+        // check results
+        Chuck_Msg * reply;
+        while((reply = ck->m_vm->get_reply()) == NULL) { usleep(100); }
+        
+        if(reply->type == MSG_ADD)
+            shred_id = (unsigned int) reply->replyA;
+        
+        delete msg;
+           
+        result = result_ok(shred_id);
+    }
+    else
+    {
+        ck->m_last_err = string(EM_lasterror());
+        result = err_compile();
+    }
+    
+    if(file) { fclose(file); file = NULL; }
+    
+    return result;
 }
 
-LIBCHUCK_FUNC_DECL int libchuck_replace_shred(chuck_inst *, int shred_id, const char *code)
+LIBCHUCK_FUNC_DECL chuck_result libchuck_replace_shred(chuck_inst *ck, int shred_id, const char *filepath, const char *code)
 {
-    return 0;
+    return result_ok(0);
 }
 
-LIBCHUCK_FUNC_DECL int libchuck_remove_shred(chuck_inst *, int shred_id)
+LIBCHUCK_FUNC_DECL chuck_result libchuck_remove_shred(chuck_inst *ck, int shred_id)
 {
-    return 0;
+    return result_ok(0);
+}
+
+LIBCHUCK_FUNC_DECL const char *libchuck_last_error_string(chuck_inst *ck)
+{
+    return ck->m_last_err.c_str();
 }
 
