@@ -16,7 +16,7 @@
 		0946F8031AA830240045E1C4 /* libTheAmazingAudioEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0946F8001AA82FF70045E1C4 /* libTheAmazingAudioEngine.a */; };
 		0946F8061AA832520045E1C4 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0946F8051AA832520045E1C4 /* Accelerate.framework */; };
 		0946F8081AA832610045E1C4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0946F8071AA832610045E1C4 /* AVFoundation.framework */; };
-		09A13EB41AA08532007DB8D2 /* libchuck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EB11AA083EA007DB8D2 /* libchuck.a */; };
+		0946F85C1AA85B690045E1C4 /* libchuck-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0946F85B1AA85B600045E1C4 /* libchuck-iOS.a */; };
 		09A13EBD1AA0861F007DB8D2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EBA1AA0861F007DB8D2 /* AudioToolbox.framework */; };
 		09A13EBF1AA0861F007DB8D2 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EBC1AA0861F007DB8D2 /* CoreAudio.framework */; };
 		09A13EC11AA08626007DB8D2 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EC01AA08626007DB8D2 /* libc++.dylib */; };
@@ -36,6 +36,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4C215CEB1523A7D500D36CAD;
 			remoteInfo = TheAmazingAudioEngine;
+		};
+		0946F85A1AA85B600045E1C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09A13EAC1AA083EA007DB8D2 /* libchuck.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0946F8561AA85B080045E1C4;
+			remoteInfo = "libchuck-iOS";
 		};
 		09A13EB01AA083EA007DB8D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -79,13 +86,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0946F85C1AA85B690045E1C4 /* libchuck-iOS.a in Frameworks */,
 				0946F8081AA832610045E1C4 /* AVFoundation.framework in Frameworks */,
 				0946F8061AA832520045E1C4 /* Accelerate.framework in Frameworks */,
 				09A13EBD1AA0861F007DB8D2 /* AudioToolbox.framework in Frameworks */,
 				0946F8031AA830240045E1C4 /* libTheAmazingAudioEngine.a in Frameworks */,
 				09A13EC11AA08626007DB8D2 /* libc++.dylib in Frameworks */,
 				09A13EBF1AA0861F007DB8D2 /* CoreAudio.framework in Frameworks */,
-				09A13EB41AA08532007DB8D2 /* libchuck.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				09A13EB11AA083EA007DB8D2 /* libchuck.a */,
+				0946F85B1AA85B600045E1C4 /* libchuck-iOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,6 +242,13 @@
 			fileType = archive.ar;
 			path = libTheAmazingAudioEngine.a;
 			remoteRef = 0946F7FF1AA82FF70045E1C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0946F85B1AA85B600045E1C4 /* libchuck-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libchuck-iOS.a";
+			remoteRef = 0946F85A1AA85B600045E1C4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		09A13EB11AA083EA007DB8D2 /* libchuck.a */ = {

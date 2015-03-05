@@ -29,6 +29,7 @@
     options.buffer_size = 512;
 #endif
     options.num_channels = 2;
+    options.slave = false;
     
     chuck_inst *ck = libchuck_create(&options);
     

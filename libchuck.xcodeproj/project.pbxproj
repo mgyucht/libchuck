@@ -7,6 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0946F80B1AA85B080045E1C4 /* chuck.lex in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6461A9C73360066CCBD /* chuck.lex */; };
+		0946F80C1AA85B080045E1C4 /* util_sndfile.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9BC1A9C73380066CCBD /* util_sndfile.c */; };
+		0946F80D1AA85B080045E1C4 /* mo_audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8C01A9C73370066CCBD /* mo_audio.mm */; };
+		0946F80E1AA85B080045E1C4 /* ulib_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9A41A9C73380066CCBD /* ulib_math.cpp */; };
+		0946F80F1AA85B080045E1C4 /* chuck_scan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A66B1A9C73370066CCBD /* chuck_scan.cpp */; };
+		0946F8101AA85B080045E1C4 /* util_opsc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9B61A9C73380066CCBD /* util_opsc.cpp */; };
+		0946F8111AA85B080045E1C4 /* util_network.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9B41A9C73380066CCBD /* util_network.c */; };
+		0946F8121AA85B080045E1C4 /* server_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8AF1A9C73370066CCBD /* server_thread.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F8131AA85B080045E1C4 /* chuck_emit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6561A9C73360066CCBD /* chuck_emit.cpp */; };
+		0946F8141AA85B080045E1C4 /* hidio_sdl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8991A9C73370066CCBD /* hidio_sdl.cpp */; };
+		0946F8151AA85B080045E1C4 /* ulib_opsc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9A61A9C73380066CCBD /* ulib_opsc.cpp */; };
+		0946F8161AA85B080045E1C4 /* chuck_globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A65C1A9C73360066CCBD /* chuck_globals.cpp */; };
+		0946F8171AA85B080045E1C4 /* chuck_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6731A9C73370066CCBD /* chuck_table.cpp */; };
+		0946F8181AA85B080045E1C4 /* chuck_symbol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6711A9C73370066CCBD /* chuck_symbol.cpp */; };
+		0946F8191AA85B080045E1C4 /* chuck_dl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6541A9C73360066CCBD /* chuck_dl.cpp */; };
+		0946F81A1AA85B080045E1C4 /* server.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8AE1A9C73370066CCBD /* server.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F81B1AA85B080045E1C4 /* digiio_rtaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948AA1D1A9C73A70066CCBD /* digiio_rtaudio.cpp */; };
+		0946F81C1AA85B080045E1C4 /* ugen_stk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A99E1A9C73380066CCBD /* ugen_stk.cpp */; };
+		0946F81D1AA85B080045E1C4 /* chuck_parse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6691A9C73370066CCBD /* chuck_parse.cpp */; };
+		0946F81E1AA85B080045E1C4 /* ulib_std.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9AA1A9C73380066CCBD /* ulib_std.cpp */; };
+		0946F81F1AA85B080045E1C4 /* uana_xform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9981A9C73380066CCBD /* uana_xform.cpp */; };
+		0946F8201AA85B080045E1C4 /* util_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9BE1A9C73380066CCBD /* util_string.cpp */; };
+		0946F8211AA85B080045E1C4 /* chuck_ugen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6771A9C73370066CCBD /* chuck_ugen.cpp */; };
+		0946F8221AA85B080045E1C4 /* chuck_errmsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6581A9C73360066CCBD /* chuck_errmsg.cpp */; };
+		0946F8231AA85B080045E1C4 /* message.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8AA1A9C73370066CCBD /* message.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F8241AA85B080045E1C4 /* chuck_lang.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6621A9C73360066CCBD /* chuck_lang.cpp */; };
+		0946F8251AA85B080045E1C4 /* ugen_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A99A1A9C73380066CCBD /* ugen_filter.cpp */; };
+		0946F8261AA85B080045E1C4 /* chuck_console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6511A9C73360066CCBD /* chuck_console.cpp */; };
+		0946F8271AA85B080045E1C4 /* util_xforms.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9C21A9C73380066CCBD /* util_xforms.c */; };
+		0946F8281AA85B080045E1C4 /* ulib_regex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9A81A9C73380066CCBD /* ulib_regex.cpp */; };
+		0946F8291AA85B080045E1C4 /* chuck_vm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A67B1A9C73370066CCBD /* chuck_vm.cpp */; };
+		0946F82A1AA85B080045E1C4 /* uana_extract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9961A9C73380066CCBD /* uana_extract.cpp */; };
+		0946F82B1AA85B080045E1C4 /* chuck_compile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64F1A9C73360066CCBD /* chuck_compile.cpp */; };
+		0946F82C1AA85B080045E1C4 /* midiio_rtmidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8BC1A9C73370066CCBD /* midiio_rtmidi.cpp */; };
+		0946F82D1AA85B080045E1C4 /* util_serial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9BA1A9C73380066CCBD /* util_serial.cpp */; };
+		0946F82E1AA85B080045E1C4 /* chuck_type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6751A9C73370066CCBD /* chuck_type.cpp */; };
+		0946F82F1AA85B080045E1C4 /* chuck_io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6601A9C73360066CCBD /* chuck_io.cpp */; };
+		0946F8301AA85B080045E1C4 /* util_buffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9AC1A9C73380066CCBD /* util_buffers.cpp */; };
+		0946F8311AA85B080045E1C4 /* address.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A89C1A9C73370066CCBD /* address.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F8321AA85B080045E1C4 /* util_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9C01A9C73380066CCBD /* util_thread.cpp */; };
+		0946F8331AA85B080045E1C4 /* chuck_absyn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64B1A9C73360066CCBD /* chuck_absyn.cpp */; };
+		0946F8341AA85B080045E1C4 /* ugen_xxx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9A01A9C73380066CCBD /* ugen_xxx.cpp */; };
+		0946F8351AA85B080045E1C4 /* util_math.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9B21A9C73380066CCBD /* util_math.c */; };
+		0946F8361AA85B080045E1C4 /* ugen_osc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A99C1A9C73380066CCBD /* ugen_osc.cpp */; };
+		0946F8371AA85B080045E1C4 /* chuck_instr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A65E1A9C73360066CCBD /* chuck_instr.cpp */; };
+		0946F8381AA85B080045E1C4 /* method.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8AB1A9C73370066CCBD /* method.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F8391AA85B080045E1C4 /* bundle.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A89E1A9C73370066CCBD /* bundle.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F83A1AA85B080045E1C4 /* chuck_oo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6651A9C73360066CCBD /* chuck_oo.cpp */; };
+		0946F83B1AA85B080045E1C4 /* chuck_shell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A66D1A9C73370066CCBD /* chuck_shell.cpp */; };
+		0946F83C1AA85B080045E1C4 /* util_raw.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9B81A9C73380066CCBD /* util_raw.c */; };
+		0946F83D1AA85B080045E1C4 /* pattern_match.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8AC1A9C73370066CCBD /* pattern_match.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F83E1AA85B080045E1C4 /* send.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8AD1A9C73370066CCBD /* send.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F83F1AA85B080045E1C4 /* chuck_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6791A9C73370066CCBD /* chuck_utils.cpp */; };
+		0946F8401AA85B080045E1C4 /* chuck_stats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A66F1A9C73370066CCBD /* chuck_stats.cpp */; };
+		0946F8411AA85B080045E1C4 /* chuck_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A65A1A9C73360066CCBD /* chuck_frame.cpp */; };
+		0946F8421AA85B080045E1C4 /* libchuck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09DDF9831A9C6BB200F72155 /* libchuck.cpp */; };
+		0946F8431AA85B080045E1C4 /* chuck_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6641A9C73360066CCBD /* chuck_main.cpp */; };
+		0946F8441AA85B080045E1C4 /* util_hid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9B01A9C73380066CCBD /* util_hid.cpp */; };
+		0946F8451AA85B080045E1C4 /* blob.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A89D1A9C73370066CCBD /* blob.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F8461AA85B080045E1C4 /* chuck_bbq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64D1A9C73360066CCBD /* chuck_bbq.cpp */; };
+		0946F8471AA85B080045E1C4 /* chuck_otf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6671A9C73370066CCBD /* chuck_otf.cpp */; };
+		0946F8481AA85B080045E1C4 /* chuck.y in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64A1A9C73360066CCBD /* chuck.y */; };
+		0946F8491AA85B080045E1C4 /* util_console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9AE1A9C73380066CCBD /* util_console.cpp */; };
+		0946F84A1AA85B080045E1C4 /* timetag.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8B01A9C73370066CCBD /* timetag.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
+		0946F84B1AA85B080045E1C4 /* ulib_machine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9A21A9C73380066CCBD /* ulib_machine.cpp */; };
+		0946F84D1AA85B080045E1C4 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EB81AA0860A007DB8D2 /* AudioUnit.framework */; };
+		0946F84E1AA85B080045E1C4 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EB61AA085BA007DB8D2 /* libc++.dylib */; };
+		0946F84F1AA85B080045E1C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0948AA211A9C76410066CCBD /* AudioToolbox.framework */; };
+		0946F8501AA85B080045E1C4 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0948AA1F1A9C76380066CCBD /* CoreAudio.framework */; };
+		0946F8521AA85B080045E1C4 /* libchuck.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 09DDF9811A9C6BB200F72155 /* libchuck.h */; };
 		0948A9C91A9C73380066CCBD /* chuck.y in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64A1A9C73360066CCBD /* chuck.y */; };
 		0948A9CA1A9C73380066CCBD /* chuck_absyn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64B1A9C73360066CCBD /* chuck_absyn.cpp */; };
 		0948A9CB1A9C73380066CCBD /* chuck_bbq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64D1A9C73360066CCBD /* chuck_bbq.cpp */; };
@@ -80,6 +150,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0946F8511AA85B080045E1C4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				0946F8521AA85B080045E1C4 /* libchuck.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		09DDF97C1A9C6BB200F72155 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +173,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0946F8561AA85B080045E1C4 /* libchuck-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libchuck-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0948A6461A9C73360066CCBD /* chuck.lex */ = {isa = PBXFileReference; explicitFileType = sourcecode.lex; fileEncoding = 4; path = chuck.lex; sourceTree = "<group>"; };
 		0948A64A1A9C73360066CCBD /* chuck.y */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.yacc; path = chuck.y; sourceTree = "<group>"; };
 		0948A64B1A9C73360066CCBD /* chuck_absyn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chuck_absyn.cpp; sourceTree = "<group>"; };
@@ -262,6 +343,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0946F84C1AA85B080045E1C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0946F84D1AA85B080045E1C4 /* AudioUnit.framework in Frameworks */,
+				0946F84E1AA85B080045E1C4 /* libc++.dylib in Frameworks */,
+				0946F84F1AA85B080045E1C4 /* AudioToolbox.framework in Frameworks */,
+				0946F8501AA85B080045E1C4 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		09DDF97B1A9C6BB200F72155 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -507,6 +599,7 @@
 			isa = PBXGroup;
 			children = (
 				09DDF97E1A9C6BB200F72155 /* libchuck.a */,
+				0946F8561AA85B080045E1C4 /* libchuck-iOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -523,6 +616,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0946F8091AA85B080045E1C4 /* libchuck-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0946F8531AA85B080045E1C4 /* Build configuration list for PBXNativeTarget "libchuck-iOS" */;
+			buildPhases = (
+				0946F80A1AA85B080045E1C4 /* Sources */,
+				0946F84C1AA85B080045E1C4 /* Frameworks */,
+				0946F8511AA85B080045E1C4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "libchuck-iOS";
+			productName = libchuck;
+			productReference = 0946F8561AA85B080045E1C4 /* libchuck-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		09DDF97D1A9C6BB200F72155 /* libchuck */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09DDF9921A9C6BB200F72155 /* Build configuration list for PBXNativeTarget "libchuck" */;
@@ -567,11 +677,84 @@
 			projectRoot = "";
 			targets = (
 				09DDF97D1A9C6BB200F72155 /* libchuck */,
+				0946F8091AA85B080045E1C4 /* libchuck-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0946F80A1AA85B080045E1C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0946F80B1AA85B080045E1C4 /* chuck.lex in Sources */,
+				0946F80C1AA85B080045E1C4 /* util_sndfile.c in Sources */,
+				0946F80D1AA85B080045E1C4 /* mo_audio.mm in Sources */,
+				0946F80E1AA85B080045E1C4 /* ulib_math.cpp in Sources */,
+				0946F80F1AA85B080045E1C4 /* chuck_scan.cpp in Sources */,
+				0946F8101AA85B080045E1C4 /* util_opsc.cpp in Sources */,
+				0946F8111AA85B080045E1C4 /* util_network.c in Sources */,
+				0946F8121AA85B080045E1C4 /* server_thread.c in Sources */,
+				0946F8131AA85B080045E1C4 /* chuck_emit.cpp in Sources */,
+				0946F8141AA85B080045E1C4 /* hidio_sdl.cpp in Sources */,
+				0946F8151AA85B080045E1C4 /* ulib_opsc.cpp in Sources */,
+				0946F8161AA85B080045E1C4 /* chuck_globals.cpp in Sources */,
+				0946F8171AA85B080045E1C4 /* chuck_table.cpp in Sources */,
+				0946F8181AA85B080045E1C4 /* chuck_symbol.cpp in Sources */,
+				0946F8191AA85B080045E1C4 /* chuck_dl.cpp in Sources */,
+				0946F81A1AA85B080045E1C4 /* server.c in Sources */,
+				0946F81B1AA85B080045E1C4 /* digiio_rtaudio.cpp in Sources */,
+				0946F81C1AA85B080045E1C4 /* ugen_stk.cpp in Sources */,
+				0946F81D1AA85B080045E1C4 /* chuck_parse.cpp in Sources */,
+				0946F81E1AA85B080045E1C4 /* ulib_std.cpp in Sources */,
+				0946F81F1AA85B080045E1C4 /* uana_xform.cpp in Sources */,
+				0946F8201AA85B080045E1C4 /* util_string.cpp in Sources */,
+				0946F8211AA85B080045E1C4 /* chuck_ugen.cpp in Sources */,
+				0946F8221AA85B080045E1C4 /* chuck_errmsg.cpp in Sources */,
+				0946F8231AA85B080045E1C4 /* message.c in Sources */,
+				0946F8241AA85B080045E1C4 /* chuck_lang.cpp in Sources */,
+				0946F8251AA85B080045E1C4 /* ugen_filter.cpp in Sources */,
+				0946F8261AA85B080045E1C4 /* chuck_console.cpp in Sources */,
+				0946F8271AA85B080045E1C4 /* util_xforms.c in Sources */,
+				0946F8281AA85B080045E1C4 /* ulib_regex.cpp in Sources */,
+				0946F8291AA85B080045E1C4 /* chuck_vm.cpp in Sources */,
+				0946F82A1AA85B080045E1C4 /* uana_extract.cpp in Sources */,
+				0946F82B1AA85B080045E1C4 /* chuck_compile.cpp in Sources */,
+				0946F82C1AA85B080045E1C4 /* midiio_rtmidi.cpp in Sources */,
+				0946F82D1AA85B080045E1C4 /* util_serial.cpp in Sources */,
+				0946F82E1AA85B080045E1C4 /* chuck_type.cpp in Sources */,
+				0946F82F1AA85B080045E1C4 /* chuck_io.cpp in Sources */,
+				0946F8301AA85B080045E1C4 /* util_buffers.cpp in Sources */,
+				0946F8311AA85B080045E1C4 /* address.c in Sources */,
+				0946F8321AA85B080045E1C4 /* util_thread.cpp in Sources */,
+				0946F8331AA85B080045E1C4 /* chuck_absyn.cpp in Sources */,
+				0946F8341AA85B080045E1C4 /* ugen_xxx.cpp in Sources */,
+				0946F8351AA85B080045E1C4 /* util_math.c in Sources */,
+				0946F8361AA85B080045E1C4 /* ugen_osc.cpp in Sources */,
+				0946F8371AA85B080045E1C4 /* chuck_instr.cpp in Sources */,
+				0946F8381AA85B080045E1C4 /* method.c in Sources */,
+				0946F8391AA85B080045E1C4 /* bundle.c in Sources */,
+				0946F83A1AA85B080045E1C4 /* chuck_oo.cpp in Sources */,
+				0946F83B1AA85B080045E1C4 /* chuck_shell.cpp in Sources */,
+				0946F83C1AA85B080045E1C4 /* util_raw.c in Sources */,
+				0946F83D1AA85B080045E1C4 /* pattern_match.c in Sources */,
+				0946F83E1AA85B080045E1C4 /* send.c in Sources */,
+				0946F83F1AA85B080045E1C4 /* chuck_utils.cpp in Sources */,
+				0946F8401AA85B080045E1C4 /* chuck_stats.cpp in Sources */,
+				0946F8411AA85B080045E1C4 /* chuck_frame.cpp in Sources */,
+				0946F8421AA85B080045E1C4 /* libchuck.cpp in Sources */,
+				0946F8431AA85B080045E1C4 /* chuck_main.cpp in Sources */,
+				0946F8441AA85B080045E1C4 /* util_hid.cpp in Sources */,
+				0946F8451AA85B080045E1C4 /* blob.c in Sources */,
+				0946F8461AA85B080045E1C4 /* chuck_bbq.cpp in Sources */,
+				0946F8471AA85B080045E1C4 /* chuck_otf.cpp in Sources */,
+				0946F8481AA85B080045E1C4 /* chuck.y in Sources */,
+				0946F8491AA85B080045E1C4 /* util_console.cpp in Sources */,
+				0946F84A1AA85B080045E1C4 /* timetag.c in Sources */,
+				0946F84B1AA85B080045E1C4 /* ulib_machine.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		09DDF97A1A9C6BB200F72155 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -647,6 +830,75 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		0946F8541AA85B080045E1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_FAST_MATH = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__CHIP_MODE__,
+					__MACOSX_CORE__,
+					"DEBUG=1",
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
+					__CHIP_MODE__,
+					__MACOSX_CORE__,
+					"DEBUG=1",
+					TARGET_OS_IPHONE,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*]" = (
+					__CHIP_MODE__,
+					__MACOSX_CORE__,
+					"DEBUG=1",
+					TARGET_IPHONE_SIMULATOR,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/chuck/src/",
+					"$(PROJECT_DIR)/chuck/src/lo",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = chuck;
+				PRODUCT_NAME = "chuck-iOS";
+				SKIP_INSTALL = YES;
+				YACC_GENERATED_FILE_STEM = InputFileStem;
+			};
+			name = Debug;
+		};
+		0946F8551AA85B080045E1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_FAST_MATH = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__CHIP_MODE__,
+					__MACOSX_CORE__,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
+					__CHIP_MODE__,
+					__MACOSX_CORE__,
+					TARGET_OS_IPHONE,
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*]" = (
+					__CHIP_MODE__,
+					__MACOSX_CORE__,
+					TARGET_IPHONE_SIMULATOR,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/chuck/src/",
+					"$(PROJECT_DIR)/chuck/src/lo",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = chuck;
+				PRODUCT_NAME = "chuck-iOS";
+				SKIP_INSTALL = YES;
+				YACC_GENERATED_FILE_STEM = InputFileStem;
+			};
+			name = Release;
+		};
 		09DDF9901A9C6BB200F72155 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -794,6 +1046,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0946F8531AA85B080045E1C4 /* Build configuration list for PBXNativeTarget "libchuck-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0946F8541AA85B080045E1C4 /* Debug */,
+				0946F8551AA85B080045E1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		09DDF9791A9C6BB200F72155 /* Build configuration list for PBXProject "libchuck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

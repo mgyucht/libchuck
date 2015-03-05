@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>libchuck-iOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>libchuck.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0946F8091AA85B080045E1C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>09DDF97D1A9C6BB200F72155</key>
 		<dict>
 			<key>primary</key>
