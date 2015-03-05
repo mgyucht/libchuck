@@ -1,3 +1,6 @@
 [submodule "chuck"]
 	path = chuck
 	url = https://github.com/ccrma/chuck.git
+[submodule "TheAmazingAudioEngine"]
+	path = TheAmazingAudioEngine
+	url = https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine.git

@@ -24,6 +24,7 @@ typedef struct chuck_options
     int num_channels;
     int sample_rate;
     int buffer_size;
+    bool slave;
 } chuck_options;
 
 typedef struct chuck_result
@@ -48,6 +49,8 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_stop(chuck_inst *);
 LIBCHUCK_FUNC_DECL chuck_result libchuck_add_shred(chuck_inst *, const char *filepath, const char *code);
 LIBCHUCK_FUNC_DECL chuck_result libchuck_replace_shred(chuck_inst *, int shred_id, const char *filepath,  const char *code);
 LIBCHUCK_FUNC_DECL chuck_result libchuck_remove_shred(chuck_inst *, int shred_id);
+
+LIBCHUCK_FUNC_DECL int libchuck_slave_process(chuck_inst *, float *input, float *output, int numFrames);
 
 LIBCHUCK_FUNC_DECL const char *libchuck_last_error_string(chuck_inst *);
 

@@ -12,6 +12,7 @@
 #include "chuck_compile.h"
 #include "chuck_globals.h"
 #include "util_thread.h"
+#include "digiio_rtaudio.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -118,7 +119,7 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
     {
         // log
         EM_log( CK_LOG_INFO, "allocating VM..." );
-        t_CKBOOL enable_audio = TRUE;
+        t_CKBOOL enable_audio = ck->m_options.slave ? FALSE : TRUE;
         t_CKBOOL vm_halt = FALSE;
         t_CKUINT srate = ck->m_options.sample_rate;
         t_CKUINT buffer_size = ck->m_options.buffer_size;
@@ -337,6 +338,11 @@ LIBCHUCK_FUNC_DECL chuck_result libchuck_replace_shred(chuck_inst *ck, int shred
 LIBCHUCK_FUNC_DECL chuck_result libchuck_remove_shred(chuck_inst *ck, int shred_id)
 {
     return result_ok(0);
+}
+
+LIBCHUCK_FUNC_DECL int libchuck_slave_process(chuck_inst *ck, float *input, float *output, int numFrames)
+{
+    return Digitalio::cb2(output, input, numFrames, 0, 0, ck->m_vm);
 }
 
 LIBCHUCK_FUNC_DECL const char *libchuck_last_error_string(chuck_inst *ck)
