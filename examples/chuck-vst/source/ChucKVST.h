@@ -105,7 +105,7 @@ protected:
 // Parameters (knobs) ranges and scale types
 
 // output filter gain limits, dB; taper, exponent
-const static float OGainLimits[2] = {-30.0, 30.0};
+const static float OGainLimits[2] = {-80.0, 10.0};
 const static float OGainTaper = 1.0; 
 
 

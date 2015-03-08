@@ -64,7 +64,6 @@ struct chuck_inst
     Chuck_VM *m_vm;
     Chuck_Compiler *m_compiler;
     string m_last_err;
-    XThread m_vm_thread;
 };
 
 LIBCHUCK_FUNC_DECL void libchuck_options_reset(chuck_options *options)
@@ -250,8 +249,6 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_stop(chuck_inst *ck)
             // stop
             the_vm->stop();
             
-            ck->m_vm_thread.wait();
-            
             // wait a bit
 //            usleep( 100000 );
             
@@ -427,7 +424,6 @@ LIBCHUCK_FUNC_DECL chuck_result libchuck_remove_shred(chuck_inst *ck, int shred_
 
 LIBCHUCK_FUNC_DECL int libchuck_slave_process(chuck_inst *ck, float *input, float *output, int numFrames)
 {
-    // TODO: handle varying buffer sizes 
     return Digitalio::cb2(output, input, numFrames, 0, 0, ck->m_vm);
 }
 

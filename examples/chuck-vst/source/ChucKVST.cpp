@@ -29,7 +29,7 @@ ChucKVST::ChucKVST (audioMasterCallback audioMaster)
     chuck_options options;
     libchuck_options_reset(&options);
     options.buffer_size = getBlockSize();
-    options.adaptive_buffer_size = options.buffer_size;
+    options.adaptive_buffer_size = 0;
     options.num_channels = kNumOutputs;
     options.sample_rate = getSampleRate();
     options.slave = true;
@@ -142,7 +142,7 @@ void ChucKVST::getParameterName (VstInt32 index, char* label)
             vst_strncpy(label, "ChucK it! ",kVstMaxParamStrLen);
             break;
         case kParamOutputGain:
-            vst_strncpy(label, "OutGain ",kVstMaxParamStrLen);
+            vst_strncpy(label, "Output Gain ",kVstMaxParamStrLen);
             break;
         default :
             *label = '\0';
@@ -243,7 +243,7 @@ void ChucKVST::processReplacing (float** inputs, float** outputs, VstInt32 sampl
     // copy output
     for (int i = 0; i < sampleFrames; i++)
     {
-        outputs[0][i] = output_buffer[i*2];
-        outputs[1][i] = output_buffer[i*2+1];
+        outputs[0][i] = output_buffer[i*2]*output_gain;
+        outputs[1][i] = output_buffer[i*2+1]*output_gain;
     }
 }
