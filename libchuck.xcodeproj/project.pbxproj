@@ -115,7 +115,6 @@
 		0948A9EE1A9C73380066CCBD /* server_thread.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8AF1A9C73370066CCBD /* server_thread.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
 		0948A9EF1A9C73380066CCBD /* timetag.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8B01A9C73370066CCBD /* timetag.c */; settings = {COMPILER_FLAGS = "-DHAVE_CONFIG_H"; }; };
 		0948A9F11A9C73380066CCBD /* midiio_rtmidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8BC1A9C73370066CCBD /* midiio_rtmidi.cpp */; };
-		0948A9F21A9C73380066CCBD /* mo_audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8C01A9C73370066CCBD /* mo_audio.mm */; };
 		0948AA031A9C73380066CCBD /* uana_extract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9961A9C73380066CCBD /* uana_extract.cpp */; };
 		0948AA041A9C73380066CCBD /* uana_xform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9981A9C73380066CCBD /* uana_xform.cpp */; };
 		0948AA051A9C73380066CCBD /* ugen_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A99A1A9C73380066CCBD /* ugen_filter.cpp */; };
@@ -141,12 +140,14 @@
 		0948AA191A9C73380066CCBD /* util_xforms.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9C21A9C73380066CCBD /* util_xforms.c */; };
 		0948AA201A9C76380066CCBD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0948AA1F1A9C76380066CCBD /* CoreAudio.framework */; };
 		0948AA221A9C76410066CCBD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0948AA211A9C76410066CCBD /* AudioToolbox.framework */; };
+		096E97211AA8671F00E97A67 /* rtmidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8E71A9C73370066CCBD /* rtmidi.cpp */; };
 		09A13EB51AA08583007DB8D2 /* digiio_rtaudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948AA1D1A9C73A70066CCBD /* digiio_rtaudio.cpp */; };
 		09A13EB71AA085BA007DB8D2 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EB61AA085BA007DB8D2 /* libc++.dylib */; };
 		09A13EB91AA0860A007DB8D2 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EB81AA0860A007DB8D2 /* AudioUnit.framework */; };
 		09A13EC31AA08777007DB8D2 /* chuck.lex in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6461A9C73360066CCBD /* chuck.lex */; };
 		09DDF9821A9C6BB200F72155 /* libchuck.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 09DDF9811A9C6BB200F72155 /* libchuck.h */; };
 		09DDF9841A9C6BB200F72155 /* libchuck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09DDF9831A9C6BB200F72155 /* libchuck.cpp */; };
+		09E57F9F1AA8601D000E7D2A /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8E41A9C73370066CCBD /* RtAudio.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -761,7 +762,6 @@
 			files = (
 				09A13EC31AA08777007DB8D2 /* chuck.lex in Sources */,
 				0948AA161A9C73380066CCBD /* util_sndfile.c in Sources */,
-				0948A9F21A9C73380066CCBD /* mo_audio.mm in Sources */,
 				0948AA0A1A9C73380066CCBD /* ulib_math.cpp in Sources */,
 				0948A9DA1A9C73380066CCBD /* chuck_scan.cpp in Sources */,
 				0948AA131A9C73380066CCBD /* util_opsc.cpp in Sources */,
@@ -790,6 +790,7 @@
 				0948AA191A9C73380066CCBD /* util_xforms.c in Sources */,
 				0948AA0C1A9C73380066CCBD /* ulib_regex.cpp in Sources */,
 				0948A9E21A9C73380066CCBD /* chuck_vm.cpp in Sources */,
+				096E97211AA8671F00E97A67 /* rtmidi.cpp in Sources */,
 				0948AA031A9C73380066CCBD /* uana_extract.cpp in Sources */,
 				0948A9CC1A9C73380066CCBD /* chuck_compile.cpp in Sources */,
 				0948A9F11A9C73380066CCBD /* midiio_rtmidi.cpp in Sources */,
@@ -823,6 +824,7 @@
 				0948A9C91A9C73380066CCBD /* chuck.y in Sources */,
 				0948AA0F1A9C73380066CCBD /* util_console.cpp in Sources */,
 				0948A9EF1A9C73380066CCBD /* timetag.c in Sources */,
+				09E57F9F1AA8601D000E7D2A /* RtAudio.cpp in Sources */,
 				0948AA091A9C73380066CCBD /* ulib_machine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -977,23 +979,11 @@
 		09DDF9931A9C6BB200F72155 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_FAST_MATH = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					__CHIP_MODE__,
 					__MACOSX_CORE__,
 					"DEBUG=1",
-				);
-				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
-					__CHIP_MODE__,
-					__MACOSX_CORE__,
-					"DEBUG=1",
-					TARGET_OS_IPHONE,
-				);
-				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*]" = (
-					__CHIP_MODE__,
-					__MACOSX_CORE__,
-					"DEBUG=1",
-					TARGET_IPHONE_SIMULATOR,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1002,9 +992,16 @@
 					"$(PROJECT_DIR)/chuck/src/",
 					"$(PROJECT_DIR)/chuck/src/lo",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-F/System/Library/PrivateFrameworks",
+					"-weak_framework",
+					MultitouchSupport,
+				);
 				PRODUCT_MODULE_NAME = chuck;
 				PRODUCT_NAME = chuck;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				YACC_GENERATED_FILE_STEM = InputFileStem;
 			};
@@ -1013,21 +1010,9 @@
 		09DDF9941A9C6BB200F72155 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_FAST_MATH = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					__CHIP_MODE__,
-					__MACOSX_CORE__,
-				);
-				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*]" = (
-					__CHIP_MODE__,
-					__MACOSX_CORE__,
-					TARGET_OS_IPHONE,
-				);
-				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphonesimulator*]" = (
-					__CHIP_MODE__,
-					__MACOSX_CORE__,
-					TARGET_IPHONE_SIMULATOR,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = __MACOSX_CORE__;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1035,9 +1020,16 @@
 					"$(PROJECT_DIR)/chuck/src/",
 					"$(PROJECT_DIR)/chuck/src/lo",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-F/System/Library/PrivateFrameworks",
+					"-weak_framework",
+					MultitouchSupport,
+				);
 				PRODUCT_MODULE_NAME = chuck;
 				PRODUCT_NAME = chuck;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				YACC_GENERATED_FILE_STEM = InputFileStem;
 			};

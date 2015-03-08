@@ -104,6 +104,8 @@ LIBCHUCK_FUNC_DECL chuck_inst *libchuck_create(chuck_options *options)
     ck->m_compiler = NULL;
     ck->m_options = *options;
     
+    EM_setlog(CK_LOG_SYSTEM);
+    
     return ck;
 }
 
