@@ -14,6 +14,7 @@
 #include "util_thread.h"
 #include "digiio_rtaudio.h"
 #include "chuck_otf.h"
+#include "util_string.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -66,39 +67,17 @@ struct chuck_inst
     XThread m_vm_thread;
 };
 
-static void *vm_cb(void *arg)
+LIBCHUCK_FUNC_DECL void libchuck_options_reset(chuck_options *options)
 {
-    Chuck_VM *vm = (Chuck_VM *)arg;
-    // boost priority
-    if( Chuck_VM::our_priority != 0x7fffffff )
-    {
-        // try
-        if( !Chuck_VM::set_priority( Chuck_VM::our_priority, vm ) )
-        {
-            // error
-            // libchuck TODO: log error
-            // fprintf( stderr, "[chuck]: %s\n", g_vm->last_error() );
-            return FALSE;
-        }
-    }
+    assert(options != NULL);
     
-    // run the vm
-    vm->run();
+    memset(options, 0, sizeof(chuck_options));
     
-    // detach
-    all_detach();
-    
-    // log
-    // libchuck TODO: log error
-    EM_log( CK_LOG_SEVERE, "VM callback process ending..." );
-    
-    // free vm
-    //g_vm = NULL; SAFE_DELETE( g_vm );
-    //SAFE_DELETE( g_vm );
-    // free the compiler
-    //SAFE_DELETE( compiler );
-    
-    return NULL;
+    options->num_channels = 2;
+    options->sample_rate = SAMPLING_RATE_DEFAULT;
+    options->buffer_size = BUFFER_SIZE_DEFAULT;
+    options->adaptive_buffer_size = 0;
+    options->slave = false;
 }
 
 LIBCHUCK_FUNC_DECL chuck_inst *libchuck_create(chuck_options *options)
@@ -111,7 +90,7 @@ LIBCHUCK_FUNC_DECL chuck_inst *libchuck_create(chuck_options *options)
     ck->m_compiler = NULL;
     ck->m_options = *options;
     
-    EM_setlog(CK_LOG_SYSTEM);
+    EM_setlog(CK_LOG_INFO);
     
     return ck;
 }
@@ -135,10 +114,10 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
         t_CKUINT num_buffers = 8;
         t_CKUINT dac = 0;
         t_CKUINT adc = 0;
-        t_CKBOOL set_priority = FALSE;
+//        t_CKBOOL set_priority = FALSE;
         t_CKBOOL block = FALSE;
         t_CKBOOL force_srate = FALSE;
-        t_CKUINT adaptive = 0;
+        t_CKUINT adaptive = ck->m_options.adaptive_buffer_size;
         t_CKBOOL slave = ck->m_options.slave;
         t_CKUINT output_channels = ck->m_options.num_channels;
         t_CKUINT input_channels = ck->m_options.num_channels;
@@ -166,16 +145,17 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
         g_compiler = ck->m_compiler = new Chuck_Compiler;
         
         std::list<std::string> library_paths;
+//        std::string chugin_path = g_default_chugin_path;
+//        // parse the colon list into STL list (added 1.3.0.0)
+//        parse_path_list( chugin_path, library_paths );
         std::list<std::string> named_chugins;
-//        std::list<std::string> library_paths = vm_options.library_paths;
-//        std::list<std::string> named_chugins = vm_options.named_chugins;
-//        // normalize paths
-//        for(std::list<std::string>::iterator i = library_paths.begin();
-//            i != library_paths.end(); i++)
-//            *i = expand_filepath(*i);
-//        for(std::list<std::string>::iterator j = named_chugins.begin();
-//            j != named_chugins.end(); j++)
-//            *j = expand_filepath(*j);
+        // normalize paths
+        for(std::list<std::string>::iterator i = library_paths.begin();
+            i != library_paths.end(); i++)
+            *i = expand_filepath(*i);
+        for(std::list<std::string>::iterator j = named_chugins.begin();
+            j != named_chugins.end(); j++)
+            *j = expand_filepath(*j);
         
         // initialize the compiler
         ck->m_compiler->initialize( ck->m_vm, library_paths, named_chugins );
@@ -250,9 +230,6 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
         ck->m_compiler->env->load_user_namespace();
         
         ck->m_vm->run( (t_CKBOOL) FALSE );
-        
-        // start the vm handler threads
-//        ck->m_vm_thread.start(vm_cb, ck->m_vm);
     }
     
     return TRUE;
@@ -354,7 +331,64 @@ LIBCHUCK_FUNC_DECL chuck_result libchuck_add_shred(chuck_inst *ck, const char *f
 
 LIBCHUCK_FUNC_DECL chuck_result libchuck_replace_shred(chuck_inst *ck, int shred_id, const char *filepath, const char *code)
 {
-    return result_ok(0);
+    const char *name = path_getLastComponent(filepath);
+    FILE *file = NULL;
+    
+    if(code == NULL)
+    {
+        file = fopen(filepath, "r");
+        if(file == NULL)
+            return err_file();
+    }
+    
+    chuck_result result;
+    
+    if(ck->m_compiler->go(name, file, code, filepath))
+    {
+        // allocate the VM message struct
+        Chuck_Msg * msg = new Chuck_Msg;
+        unsigned int shred_id = 0;
+        
+        // fill in the VM message
+        msg->code = ck->m_compiler->output();
+        
+        msg->code->name = name;
+        msg->type = MSG_REPLACE;
+        msg->param = shred_id;
+        msg->reply = ( ck_msg_func )1;
+        msg->args = new vector<string>();
+        
+        // execute
+        ck->m_vm->queue_msg( msg, 1 );
+        
+        // check results
+        Chuck_Msg * reply = NULL;
+        int usleep_dur = 100;
+        int num_tries = REPLY_TIMEOUT_MAX/(usleep_dur/1000000.0);
+        for(int i = 0; i < num_tries && (reply = ck->m_vm->get_reply()) == NULL; i++) { usleep(100); }
+        
+        if(reply == NULL)
+        {
+            result = err_timeout();
+        }
+        else
+        {
+            if(reply->type == MSG_REPLACE)
+                shred_id = (unsigned int) reply->replyA;
+            result = result_ok(shred_id);
+        }
+        
+        //        delete msg;
+    }
+    else
+    {
+        ck->m_last_err = string(EM_lasterror());
+        result = err_compile();
+    }
+    
+    if(file) { fclose(file); file = NULL; }
+    
+    return result;
 }
 
 LIBCHUCK_FUNC_DECL chuck_result libchuck_remove_shred(chuck_inst *ck, int shred_id)

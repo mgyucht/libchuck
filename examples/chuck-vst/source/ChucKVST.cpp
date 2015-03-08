@@ -27,7 +27,9 @@ ChucKVST::ChucKVST (audioMasterCallback audioMaster)
 : AudioEffectX (audioMaster, 1, kNumParams)	// 1 program, 1 parameter only
 {
     chuck_options options;
-    options.buffer_size = 512;
+    libchuck_options_reset(&options);
+    options.buffer_size = getBlockSize();
+    options.adaptive_buffer_size = options.buffer_size;
     options.num_channels = kNumOutputs;
     options.sample_rate = getSampleRate();
     options.slave = true;
@@ -64,6 +66,9 @@ ChucKVST::ChucKVST (audioMasterCallback audioMaster)
 ChucKVST::~ChucKVST ()
 {
     // TODO: free vm
+    libchuck_destroy(ck);
+    ck = NULL;
+    
     if(input_buffer) { delete[] input_buffer; input_buffer = NULL; }
     if(output_buffer) { delete[] output_buffer; output_buffer = NULL; }
 }
@@ -226,11 +231,6 @@ VstInt32 ChucKVST::getVendorVersion ()
 //-----------------------------------------------------------------------------------------
 void ChucKVST::processReplacing (float** inputs, float** outputs, VstInt32 sampleFrames)
 {
-//    float* in1  =  inputs[0];
-//    float* in2  =  inputs[1];
-//    float* out1 = outputs[0];
-//    float* out2 = outputs[1];
-    
     // copy input
     for(int i = 0; i < sampleFrames; i++)
     {

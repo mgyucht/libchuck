@@ -24,6 +24,7 @@ typedef struct chuck_options
     int num_channels;
     int sample_rate;
     int buffer_size;
+    int adaptive_buffer_size;
     bool slave;
 } chuck_options;
 
@@ -41,6 +42,7 @@ typedef struct chuck_result
     int shred_id; // only valid if OK
 } chuck_result;
 
+LIBCHUCK_FUNC_DECL void libchuck_options_reset(chuck_options *options);
 LIBCHUCK_FUNC_DECL chuck_inst *libchuck_create(chuck_options *options);
 LIBCHUCK_FUNC_DECL void libchuck_destroy(chuck_inst *);
 
