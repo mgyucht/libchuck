@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ADC35549-CBB0-48C6-A2B1-841A57FC3D68</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Compressor</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B7DB09816AD1E97200BED07992493B6405AF64FF</key>
+		<string>https://github.com/spencersalazar/libchuck.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>examples/chuck-vst/Compressor.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B7DB09816AD1E97200BED07992493B6405AF64FF</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/spencersalazar/libchuck.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B7DB09816AD1E97200BED07992493B6405AF64FF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B7DB09816AD1E97200BED07992493B6405AF64FF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>libchuck</string>
+		</dict>
+	</array>
+</dict>
+</plist>

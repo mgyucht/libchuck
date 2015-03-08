@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Digitalio::cb2(void*, void*, unsigned int, double, unsigned int, void*):digiio_rtaudio.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "vm_cb(void*):libchuck.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "ChucKVST::processReplacing(float**, float**, int):ChucKVST.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "DigitalOut::render():digiio_rtaudio.cpp">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
