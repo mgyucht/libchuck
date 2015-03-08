@@ -13,6 +13,7 @@
 #include "chuck_globals.h"
 #include "util_thread.h"
 #include "digiio_rtaudio.h"
+#include "chuck_otf.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -20,6 +21,9 @@
 #include <vector>
 
 using namespace std;
+
+// in seconds
+const int REPLY_TIMEOUT_MAX = 0.007; // a bit longer than a 256 sample buffer size
 
 
 bool path_charIsSeparator(char c)
@@ -45,9 +49,11 @@ const char *path_getLastComponent(const char *path)
     else return last+1;
 }
 
-chuck_result result_ok(int shred_id) { chuck_result result; result.type = chuck_result::OK; result.shred_id = shred_id; return result; }
-chuck_result err_file() { chuck_result result; result.type = chuck_result::ERR_FILE; return result; }
-chuck_result err_compile() { chuck_result result; result.type = chuck_result::ERR_COMPILE; return result; }
+chuck_result init_result() { chuck_result result; memset(&result, 0, sizeof(chuck_result)); return result; }
+chuck_result result_ok(int shred_id) { chuck_result result = init_result(); result.type = chuck_result::OK; result.shred_id = shred_id; return result; }
+chuck_result err_file() { chuck_result result = init_result(); result.type = chuck_result::ERR_FILE; return result; }
+chuck_result err_compile() { chuck_result result = init_result(); result.type = chuck_result::ERR_COMPILE; return result; }
+chuck_result err_timeout() { chuck_result result = init_result(); result.type = chuck_result::ERR_TIMEOUT; return result; }
 
 
 struct chuck_inst
@@ -60,13 +66,14 @@ struct chuck_inst
     XThread m_vm_thread;
 };
 
-static void *vm_cb(void *)
+static void *vm_cb(void *arg)
 {
+    Chuck_VM *vm = (Chuck_VM *)arg;
     // boost priority
     if( Chuck_VM::our_priority != 0x7fffffff )
     {
         // try
-        if( !Chuck_VM::set_priority( Chuck_VM::our_priority, g_vm ) )
+        if( !Chuck_VM::set_priority( Chuck_VM::our_priority, vm ) )
         {
             // error
             // libchuck TODO: log error
@@ -76,7 +83,7 @@ static void *vm_cb(void *)
     }
     
     // run the vm
-    g_vm->run();
+    vm->run();
     
     // detach
     all_detach();
@@ -130,6 +137,9 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
         t_CKUINT adc = 0;
         t_CKBOOL set_priority = FALSE;
         t_CKBOOL block = FALSE;
+        t_CKBOOL force_srate = FALSE;
+        t_CKUINT adaptive = 0;
+        t_CKBOOL slave = ck->m_options.slave;
         t_CKUINT output_channels = ck->m_options.num_channels;
         t_CKUINT input_channels = ck->m_options.num_channels;
         
@@ -141,7 +151,7 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
         
         if( !ck->m_vm->initialize( enable_audio, vm_halt, srate, buffer_size,
                                    num_buffers, dac, adc, output_channels,
-                                   input_channels, block ) )
+                                   input_channels, block, adaptive, force_srate, slave ) )
         {
             fprintf( stderr, "[chuck]: %s\n", ck->m_vm->last_error() );
             // pop
@@ -239,8 +249,10 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
         // load user namespace
         ck->m_compiler->env->load_user_namespace();
         
+        ck->m_vm->run( (t_CKBOOL) FALSE );
+        
         // start the vm handler threads
-        ck->m_vm_thread.start(vm_cb);
+//        ck->m_vm_thread.start(vm_cb, ck->m_vm);
     }
     
     return TRUE;
@@ -267,7 +279,7 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_stop(chuck_inst *ck)
 //            usleep( 100000 );
             
             // detach
-            // all_detach();
+            all_detach();
             
             SAFE_DELETE( the_vm );
         }
@@ -311,15 +323,23 @@ LIBCHUCK_FUNC_DECL chuck_result libchuck_add_shred(chuck_inst *ck, const char *f
         ck->m_vm->queue_msg( msg, 1 );
         
         // check results
-        Chuck_Msg * reply;
-        while((reply = ck->m_vm->get_reply()) == NULL) { usleep(100); }
+        Chuck_Msg * reply = NULL;
+        int usleep_dur = 100;
+        int num_tries = REPLY_TIMEOUT_MAX/(usleep_dur/1000000.0);
+        for(int i = 0; i < num_tries && (reply = ck->m_vm->get_reply()) == NULL; i++) { usleep(100); }
         
-        if(reply->type == MSG_ADD)
-            shred_id = (unsigned int) reply->replyA;
+        if(reply == NULL)
+        {
+            result = err_timeout();
+        }
+        else
+        {
+            if(reply->type == MSG_ADD)
+                shred_id = (unsigned int) reply->replyA;
+            result = result_ok(shred_id);
+        }
         
-        delete msg;
-           
-        result = result_ok(shred_id);
+        //        delete msg;
     }
     else
     {
@@ -339,11 +359,41 @@ LIBCHUCK_FUNC_DECL chuck_result libchuck_replace_shred(chuck_inst *ck, int shred
 
 LIBCHUCK_FUNC_DECL chuck_result libchuck_remove_shred(chuck_inst *ck, int shred_id)
 {
-    return result_ok(0);
+    chuck_result result;
+    
+    Chuck_Msg * msg = new Chuck_Msg;
+    
+    msg->type = MSG_REMOVE;
+    msg->param = shred_id;
+    msg->reply = ( ck_msg_func )1;
+    
+    ck->m_vm->queue_msg( msg, 1 );
+    
+    // check results
+    Chuck_Msg * reply = NULL;
+    int usleep_dur = 100;
+    int num_tries = REPLY_TIMEOUT_MAX/(usleep_dur/1000000.0);
+    for(int i = 0; i < num_tries && (reply = ck->m_vm->get_reply()) == NULL; i++) { usleep(100); }
+    
+    if(reply == NULL)
+    {
+        result = err_timeout();
+    }
+    else
+    {
+        if(reply->type == MSG_ADD)
+            shred_id = (unsigned int) reply->replyA;
+        result = result_ok(shred_id);
+    }
+    
+//    delete msg;
+    
+    return result;
 }
 
 LIBCHUCK_FUNC_DECL int libchuck_slave_process(chuck_inst *ck, float *input, float *output, int numFrames)
 {
+    // TODO: handle varying buffer sizes 
     return Digitalio::cb2(output, input, numFrames, 0, 0, ck->m_vm);
 }
 

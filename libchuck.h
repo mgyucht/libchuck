@@ -35,6 +35,7 @@ typedef struct chuck_result
         ERR_NOSHRED,
         ERR_BADINPUT,
         ERR_FILE,
+        ERR_TIMEOUT,
     } type;
     
     int shred_id; // only valid if OK
