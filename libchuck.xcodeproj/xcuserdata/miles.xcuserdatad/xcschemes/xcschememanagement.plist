@@ -7,7 +7,7 @@
 		<key>libchuck-iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 		<key>libchuck.xcscheme</key>
 		<dict>
@@ -23,11 +23,6 @@
 			<true/>
 		</dict>
 		<key>09DDF97D1A9C6BB200F72155</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>09DDF9881A9C6BB200F72155</key>
 		<dict>
 			<key>primary</key>
 			<true/>
