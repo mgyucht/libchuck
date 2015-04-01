@@ -20,20 +20,6 @@
                ReferencedContainer = "container:libchuck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "09DDF9881A9C6BB200F72155"
-               BuildableName = "libchuckTests.xctest"
-               BlueprintName = "libchuckTests"
-               ReferencedContainer = "container:libchuck.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -42,26 +28,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "09DDF9881A9C6BB200F72155"
-               BuildableName = "libchuckTests.xctest"
-               BlueprintName = "libchuckTests"
-               ReferencedContainer = "container:libchuck.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "09DDF97D1A9C6BB200F72155"
-            BuildableName = "libchuck.a"
-            BlueprintName = "libchuck"
-            ReferencedContainer = "container:libchuck.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
