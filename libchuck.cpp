@@ -127,6 +127,8 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
         // allocate the vm - needs the type system
         ck->m_vm = g_vm = new Chuck_VM;
         
+        Digitalio::m_init = FALSE;
+        
         if( !ck->m_vm->initialize( enable_audio, vm_halt, srate, buffer_size,
                                    num_buffers, dac, adc, output_channels,
                                    input_channels, block, adaptive, force_srate, slave ) )
