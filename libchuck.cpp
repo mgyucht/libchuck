@@ -20,6 +20,7 @@
 #include <unistd.h>
 #include <string>
 #include <vector>
+#include <list>
 
 using namespace std;
 
@@ -64,6 +65,8 @@ struct chuck_inst
     Chuck_VM *m_vm;
     Chuck_Compiler *m_compiler;
     string m_last_err;
+    
+    list<t_CKBOOL (*)(Chuck_Env *)> query_funcs;
 };
 
 LIBCHUCK_FUNC_DECL void libchuck_options_reset(chuck_options *options)
@@ -98,6 +101,12 @@ LIBCHUCK_FUNC_DECL void libchuck_destroy(chuck_inst *ck)
 {
     if(ck != NULL)
         delete ck;
+}
+
+LIBCHUCK_FUNC_DECL void libchuck_add_module(chuck_inst *ck, void *query_func)
+{
+    // do nothing
+//    ck->query_funcs.push_back((t_CKBOOL (*)(Chuck_Env *)) query_func);
 }
 
 LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
@@ -176,6 +185,9 @@ LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *ck)
         
 //        for(list<t_CKBOOL (*)(Chuck_Env *)>::iterator i = vm_options.query_funcs.begin(); i != vm_options.query_funcs.end(); i++)
 //            (*i)( ck->m_compiler->env );
+        
+        for(list<t_CKBOOL (*)(Chuck_Env *)>::iterator i = ck->query_funcs.begin(); i != ck->query_funcs.end(); i++)
+            (*i)( ck->m_compiler->env );
         
         // reset the parser
         reset_parse();

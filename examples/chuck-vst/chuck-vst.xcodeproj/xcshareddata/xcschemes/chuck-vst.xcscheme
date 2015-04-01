@@ -40,6 +40,7 @@
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <PathRunnable
+         runnableDebuggingMode = "0"
          FilePath = "/Applications/Live 8.2.8/Live.app">
       </PathRunnable>
       <MacroExpansion>

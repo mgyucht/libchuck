@@ -70,7 +70,7 @@
         }
     }]]];
     
-    libchuck_add_shred(ck, "", "SawOsc s => dac; 2::second => now;");
+    libchuck_add_shred(ck, "", "SinOsc s => dac; 1::week => now;");
     
     return YES;
 }

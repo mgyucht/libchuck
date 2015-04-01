@@ -11,10 +11,14 @@
 
 #include "ChucKVST.h"
 #include "libchuck.h"
+#include "ulib_pluginhost.h"
 
 #include <math.h>
 #include <stdio.h>
 #include <assert.h>
+
+
+
 
 //-------------------------------------------------------------------------------------------------------
 AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
@@ -38,6 +42,8 @@ ChucKVST::ChucKVST (audioMasterCallback audioMaster)
     
     input_buffer = new float[options.buffer_size*options.num_channels];
     output_buffer = new float[options.buffer_size*options.num_channels];
+    
+    libchuck_add_module(ck, (void*)pluginhost_query);
     
     libchuck_vm_start(ck);
     
@@ -96,7 +102,16 @@ void ChucKVST::setParameter (VstInt32 index, float value)
             if(value >= 0.999 && chuck_it == 0)
             {
                 chuck_it = 1;
-                libchuck_add_shred(ck, "", "SqrOsc s => dac; 1::day => now;");
+                libchuck_add_shred(ck, "PluginHost.ck", "PluginHost.beat => now; \
+                                   \
+                                   PluginHost.getTempo() => float f;\
+                                   \
+                                   while(true)\
+                {\
+                    <<< PluginHost.getTempo() >>>;\
+                    1::second => now;\
+                }\
+");
             }
             else if(value <= 0.001 && chuck_it == 1)
             {

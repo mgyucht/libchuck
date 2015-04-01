@@ -46,6 +46,8 @@ LIBCHUCK_FUNC_DECL void libchuck_options_reset(chuck_options *options);
 LIBCHUCK_FUNC_DECL chuck_inst *libchuck_create(chuck_options *options);
 LIBCHUCK_FUNC_DECL void libchuck_destroy(chuck_inst *);
 
+LIBCHUCK_FUNC_DECL void libchuck_add_module(chuck_inst *, void *query_func);
+
 LIBCHUCK_FUNC_DECL int libchuck_vm_start(chuck_inst *);
 LIBCHUCK_FUNC_DECL int libchuck_vm_stop(chuck_inst *);
 
