@@ -9,14 +9,7 @@
 #include "ulib_pluginhost.h"
 
 
-struct PluginHostInfo
-{
-    float tempo;
-    int currentBeat;
-    int beatsPerMeasure;
-};
-
-PluginHostInfo *g_hostInfo;
+PluginHostInfo *g_hostInfo = NULL;
 
 
 CK_DLL_SFUN(pluginhost_getTempo)

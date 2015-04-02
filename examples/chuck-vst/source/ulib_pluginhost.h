@@ -12,7 +12,15 @@
 #include <stdio.h>
 #include "chuck_dl.h"
 
-t_CKBOOL pluginhost_query( Chuck_DL_Query * QUERY );
+struct PluginHostInfo
+{
+    float tempo;
+    int currentBeat;
+    int beatsPerMeasure;
+};
 
+extern PluginHostInfo *g_hostInfo;
+
+t_CKBOOL pluginhost_query( Chuck_DL_Query * QUERY );
 
 #endif /* defined(__chuck_vst__ulib_pluginhost__) */
