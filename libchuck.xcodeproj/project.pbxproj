@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020933551B0D2D7B00466878 /* LibChuckObjc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AE74491AB21760007EF213 /* LibChuckObjc.h */; };
 		02C104871AB2444E00912918 /* LibChuckObjc.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02AE744A1AB21760007EF213 /* LibChuckObjc.mm */; };
-		02C104881AB2445D00912918 /* LibChuckObjc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AE74491AB21760007EF213 /* LibChuckObjc.h */; };
 		0946F80B1AA85B080045E1C4 /* chuck.lex in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6461A9C73360066CCBD /* chuck.lex */; };
 		0946F80C1AA85B080045E1C4 /* util_sndfile.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9BC1A9C73380066CCBD /* util_sndfile.c */; };
 		0946F80D1AA85B080045E1C4 /* mo_audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0948A8C01A9C73370066CCBD /* mo_audio.mm */; };
@@ -159,8 +159,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				02C104881AB2445D00912918 /* LibChuckObjc.h in CopyFiles */,
 				0946F8521AA85B080045E1C4 /* libchuck.h in CopyFiles */,
+				020933551B0D2D7B00466878 /* LibChuckObjc.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

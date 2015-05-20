@@ -30,17 +30,18 @@ typedef struct {
 
 @interface LibChuckObjc : NSObject
 
-+ (instancetype)create:(ChuckOptions)options;
-- (void)destroy;
++ (instancetype)instance;
++ (void)create:(ChuckOptions)options;
++ (void)destroy;
 
-- (NSInteger)startVM;
-- (NSInteger)stopVM;
++ (NSInteger)startVM;
++ (NSInteger)stopVM;
 
-- (ChuckResult)addShred:(NSURL *)filePath code:(NSString *)code;
-- (ChuckResult)replaceShred:(NSInteger)shredId pathToShred:(NSURL *)filePath code:(NSString *)code;
-- (ChuckResult)removeShred:(NSInteger)shredId;
++ (ChuckResult)addShred:(NSURL *)filePath code:(NSString *)code;
++ (ChuckResult)replaceShred:(NSInteger)shredId pathToShred:(NSURL *)filePath code:(NSString *)code;
++ (ChuckResult)removeShred:(NSInteger)shredId;
 
-- (NSInteger)slaveProcess:(float *)input output:(float *)output numFrames:(NSInteger)numFrames;
-- (NSString *)lastErrorString;
++ (NSInteger)slaveProcess:(float *)input output:(float *)output numFrames:(NSInteger)numFrames;
++ (NSString *)lastErrorString;
 
 @end
