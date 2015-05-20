@@ -11,10 +11,24 @@
 
 #include "ChucKVST.h"
 #include "libchuck.h"
+#include "ulib_pluginhost.h"
 
 #include <math.h>
 #include <stdio.h>
 #include <assert.h>
+
+
+// example program to run
+const char *g_chuck_code = "SinOsc s => dac;\
+PluginHost.getTempo() => float f;\
+\
+while(true)\
+{\
+<<< PluginHost.getTempo() >>>;\
+1::second => now;\
+}\
+";
+
 
 //-------------------------------------------------------------------------------------------------------
 AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
@@ -38,6 +52,8 @@ ChucKVST::ChucKVST (audioMasterCallback audioMaster)
     
     input_buffer = new float[options.buffer_size*options.num_channels];
     output_buffer = new float[options.buffer_size*options.num_channels];
+    
+    libchuck_add_module(ck, (void*)pluginhost_query);
     
     libchuck_vm_start(ck);
     
@@ -96,7 +112,7 @@ void ChucKVST::setParameter (VstInt32 index, float value)
             if(value >= 0.999 && chuck_it == 0)
             {
                 chuck_it = 1;
-                libchuck_add_shred(ck, "", "SqrOsc s => dac; 1::day => now;");
+                libchuck_add_shred(ck, "PluginHost.ck", g_chuck_code);
             }
             else if(value <= 0.001 && chuck_it == 1)
             {
@@ -231,6 +247,8 @@ VstInt32 ChucKVST::getVendorVersion ()
 //-----------------------------------------------------------------------------------------
 void ChucKVST::processReplacing (float** inputs, float** outputs, VstInt32 sampleFrames)
 {
+    g_hostInfo->tempo = 120;
+    
     // copy input
     for(int i = 0; i < sampleFrames; i++)
     {

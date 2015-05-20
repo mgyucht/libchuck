@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0982241A1ACCA8710001BE2B /* ulib_pluginhost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 098224181ACCA8710001BE2B /* ulib_pluginhost.cpp */; };
 		09A3BCFF1AABD39000F17419 /* libchuck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A3BCFA1AABD38100F17419 /* libchuck.a */; };
 		09A3BD051AABD9E900F17419 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A3BD021AABD9E900F17419 /* AudioToolbox.framework */; };
 		09A3BD061AABD9E900F17419 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A3BD031AABD9E900F17419 /* AudioUnit.framework */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		098224181ACCA8710001BE2B /* ulib_pluginhost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ulib_pluginhost.cpp; sourceTree = "<group>"; };
+		098224191ACCA8710001BE2B /* ulib_pluginhost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ulib_pluginhost.h; sourceTree = "<group>"; };
 		09A3BCF41AABD38100F17419 /* libchuck.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libchuck.xcodeproj; path = ../../libchuck.xcodeproj; sourceTree = "<group>"; };
 		09A3BD001AABD9DF00F17419 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		09A3BD021AABD9E900F17419 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -200,6 +203,8 @@
 			children = (
 				C1D8AE1413639EDE004F693A /* ChucKVST.cpp */,
 				C1D8AE1513639EDE004F693A /* ChucKVST.h */,
+				098224181ACCA8710001BE2B /* ulib_pluginhost.cpp */,
+				098224191ACCA8710001BE2B /* ulib_pluginhost.h */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 			files = (
 				C1D8ADF613639BDC004F693A /* audioeffect.cpp in Sources */,
 				C1D8ADF713639BDC004F693A /* audioeffectx.cpp in Sources */,
+				0982241A1ACCA8710001BE2B /* ulib_pluginhost.cpp in Sources */,
 				C1D8ADF813639BDC004F693A /* vstplugmain.cpp in Sources */,
 				C1D8AE1613639EDE004F693A /* ChucKVST.cpp in Sources */,
 			);
@@ -353,10 +359,12 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chuck-vst-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = __MACOSX_CORE__;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					vst_sdk,
 					../../,
+					../../chuck/src,
 				);
 				INFOPLIST_FILE = "chuck-vst-Info.plist";
 				INFOPLIST_PREPROCESS = YES;
@@ -385,10 +393,12 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chuck-vst-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = __MACOSX_CORE__;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					vst_sdk,
 					../../,
+					../../chuck/src,
 				);
 				INFOPLIST_FILE = "chuck-vst-Info.plist";
 				INFOPLIST_PREPROCESS = YES;
