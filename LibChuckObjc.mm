@@ -18,37 +18,27 @@
 
 @implementation LibChuckObjc
 
-static LibChuckObjc *singleton = nil;
-
-+ (instancetype)instance {
-    return singleton;
++ (instancetype)create:(ChuckOptions)options {
+    LibChuckObjc *chuck = [[LibChuckObjc alloc] init];
+    chuck_options cOptions;
+    cOptions.num_channels = options.numChannels;
+    cOptions.sample_rate = options.sampleRate;
+    cOptions.buffer_size = options.bufferSize;
+    cOptions.slave = options.isSlave;
+    chuck.instance = libchuck_create(&cOptions);
+    return chuck;
 }
 
-+ (void)create:(ChuckOptions)options {
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        singleton = [[LibChuckObjc alloc] init];
-    });
-    if (singleton == nil) {
-        chuck_options cOptions;
-        cOptions.num_channels = options.numChannels;
-        cOptions.sample_rate = options.sampleRate;
-        cOptions.buffer_size = options.bufferSize;
-        cOptions.slave = options.isSlave;
-        singleton.instance = libchuck_create(&cOptions);
-    }
+- (void)destroy {
+    libchuck_destroy(_instance);
 }
 
-+ (void)destroy {
-    libchuck_destroy(singleton.instance);
+- (NSInteger)startVM {
+    return libchuck_vm_start(_instance);
 }
 
-+ (NSInteger)startVM {
-    return libchuck_vm_start(singleton.instance);
-}
-
-+ (NSInteger)stopVM {
-    return libchuck_vm_stop(singleton.instance);
+- (NSInteger)stopVM {
+    return libchuck_vm_stop(_instance);
 }
 
 + (ChuckResult)toChuckResult:(chuck_result)cResult {
@@ -76,35 +66,35 @@ static LibChuckObjc *singleton = nil;
     return result;
 }
 
-+ (ChuckResult)addShred:(NSURL *)filePath code:(NSString *)code {
+- (ChuckResult)addShred:(NSURL *)filePath code:(NSString *)code {
     const char *cFilePath = [[filePath path] cStringUsingEncoding:NSUTF8StringEncoding];
     const char *cCode = [code cStringUsingEncoding:NSUTF8StringEncoding];
-    chuck_result cResult = libchuck_add_shred(singleton.instance, cFilePath, cCode);
+    chuck_result cResult = libchuck_add_shred(_instance, cFilePath, cCode);
     return [LibChuckObjc toChuckResult:cResult];
 }
 
-+ (ChuckResult)replaceShred:(NSInteger)shredId pathToShred:(NSURL *)filePath code:(NSString *)code {
+- (ChuckResult)replaceShred:(NSInteger)shredId pathToShred:(NSURL *)filePath code:(NSString *)code {
     int cShredId = shredId;
     const char *cFilePath = [[filePath path] cStringUsingEncoding:NSUTF8StringEncoding];
     const char *cCode = [code cStringUsingEncoding:NSUTF8StringEncoding];
-    chuck_result cResult = libchuck_replace_shred(singleton.instance, cShredId, cFilePath, cCode);
+    chuck_result cResult = libchuck_replace_shred(_instance, cShredId, cFilePath, cCode);
     return [LibChuckObjc toChuckResult:cResult];
 }
 
-+ (ChuckResult)removeShred:(NSInteger)shredId {
+- (ChuckResult)removeShred:(NSInteger)shredId {
     int cShredId = shredId;
-    chuck_result cResult = libchuck_remove_shred(singleton.instance, cShredId);
+    chuck_result cResult = libchuck_remove_shred(_instance, cShredId);
     return [LibChuckObjc toChuckResult:cResult];
 }
 
-+ (NSInteger)slaveProcess:(float *)input output:(float *)output numFrames:(NSInteger)numFrames {
+- (NSInteger)slaveProcess:(float *)input output:(float *)output numFrames:(NSInteger)numFrames {
     int cNumFrames = numFrames;
-    int cResult = libchuck_slave_process(singleton.instance, input, output, cNumFrames);
+    int cResult = libchuck_slave_process(_instance, input, output, cNumFrames);
     return cResult;
 }
 
-+ (NSString *)lastErrorString {
-    const char *cResult = libchuck_last_error_string(singleton.instance);
+- (NSString *)lastErrorString {
+    const char *cResult = libchuck_last_error_string(_instance);
     return [NSString stringWithUTF8String:cResult];
 }
 

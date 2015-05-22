@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		020933551B0D2D7B00466878 /* LibChuckObjc.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AE74491AB21760007EF213 /* LibChuckObjc.h */; };
+		020933551B0D2D7B00466878 /* LibChuckObjc.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 02AE74491AB21760007EF213 /* LibChuckObjc.h */; };
 		02C104871AB2444E00912918 /* LibChuckObjc.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02AE744A1AB21760007EF213 /* LibChuckObjc.mm */; };
 		0946F80B1AA85B080045E1C4 /* chuck.lex in Sources */ = {isa = PBXBuildFile; fileRef = 0948A6461A9C73360066CCBD /* chuck.lex */; };
 		0946F80C1AA85B080045E1C4 /* util_sndfile.c in Sources */ = {isa = PBXBuildFile; fileRef = 0948A9BC1A9C73380066CCBD /* util_sndfile.c */; };
@@ -78,7 +78,7 @@
 		0946F84E1AA85B080045E1C4 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A13EB61AA085BA007DB8D2 /* libc++.dylib */; };
 		0946F84F1AA85B080045E1C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0948AA211A9C76410066CCBD /* AudioToolbox.framework */; };
 		0946F8501AA85B080045E1C4 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0948AA1F1A9C76380066CCBD /* CoreAudio.framework */; };
-		0946F8521AA85B080045E1C4 /* libchuck.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 09DDF9811A9C6BB200F72155 /* libchuck.h */; };
+		0946F8521AA85B080045E1C4 /* libchuck.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 09DDF9811A9C6BB200F72155 /* libchuck.h */; };
 		0948A9C91A9C73380066CCBD /* chuck.y in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64A1A9C73360066CCBD /* chuck.y */; };
 		0948A9CA1A9C73380066CCBD /* chuck_absyn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64B1A9C73360066CCBD /* chuck_absyn.cpp */; };
 		0948A9CB1A9C73380066CCBD /* chuck_bbq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0948A64D1A9C73360066CCBD /* chuck_bbq.cpp */; };
@@ -153,15 +153,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0946F8511AA85B080045E1C4 /* CopyFiles */ = {
+		0946F8511AA85B080045E1C4 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				0946F8521AA85B080045E1C4 /* libchuck.h in CopyFiles */,
-				020933551B0D2D7B00466878 /* LibChuckObjc.h in CopyFiles */,
+				0946F8521AA85B080045E1C4 /* libchuck.h in Copy Files */,
+				020933551B0D2D7B00466878 /* LibChuckObjc.h in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		09DDF97C1A9C6BB200F72155 /* CopyFiles */ = {
@@ -638,7 +639,7 @@
 			buildPhases = (
 				0946F80A1AA85B080045E1C4 /* Sources */,
 				0946F84C1AA85B080045E1C4 /* Frameworks */,
-				0946F8511AA85B080045E1C4 /* CopyFiles */,
+				0946F8511AA85B080045E1C4 /* Copy Files */,
 			);
 			buildRules = (
 			);
