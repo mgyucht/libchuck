@@ -66,16 +66,16 @@
     return result;
 }
 
-- (ChuckResult)addShred:(NSURL *)filePath code:(NSString *)code {
-    const char *cFilePath = [[filePath path] cStringUsingEncoding:NSUTF8StringEncoding];
+- (ChuckResult)addShred:(NSString *)filePath code:(NSString *)code {
+    const char *cFilePath = [filePath cStringUsingEncoding:NSUTF8StringEncoding];
     const char *cCode = [code cStringUsingEncoding:NSUTF8StringEncoding];
     chuck_result cResult = libchuck_add_shred(_instance, cFilePath, cCode);
     return [LibChuckObjc toChuckResult:cResult];
 }
 
-- (ChuckResult)replaceShred:(NSInteger)shredId pathToShred:(NSURL *)filePath code:(NSString *)code {
+- (ChuckResult)replaceShred:(NSInteger)shredId pathToShred:(NSString *)filePath code:(NSString *)code {
     int cShredId = shredId;
-    const char *cFilePath = [[filePath path] cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *cFilePath = [filePath cStringUsingEncoding:NSUTF8StringEncoding];
     const char *cCode = [code cStringUsingEncoding:NSUTF8StringEncoding];
     chuck_result cResult = libchuck_replace_shred(_instance, cShredId, cFilePath, cCode);
     return [LibChuckObjc toChuckResult:cResult];

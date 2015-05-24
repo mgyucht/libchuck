@@ -36,8 +36,8 @@ typedef struct {
 - (NSInteger)startVM;
 - (NSInteger)stopVM;
 
-- (ChuckResult)addShred:(NSURL *)filePath code:(NSString *)code;
-- (ChuckResult)replaceShred:(NSInteger)shredId pathToShred:(NSURL *)filePath code:(NSString *)code;
+- (ChuckResult)addShred:(NSString *)filePath code:(NSString *)code;
+- (ChuckResult)replaceShred:(NSInteger)shredId pathToShred:(NSString *)filePath code:(NSString *)code;
 - (ChuckResult)removeShred:(NSInteger)shredId;
 
 - (NSInteger)slaveProcess:(float *)input output:(float *)output numFrames:(NSInteger)numFrames;
